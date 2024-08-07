@@ -5,17 +5,17 @@ export const mainPage = {
         filterActive: 'a[href="#/active"]',
         filterAll: 'a[href="#/"]',
         filterCompleted: 'a[href="#/completed"]',
-        firstTaskCompleted: 'ul.todo-list > li:first-child.completed',
-        firstTaskCheckbox: 'ul.todo-list > li:first-child input.toggle',
-        firstTaskDelete: 'ul.todo-list > li:first-child button.destroy',
+        firstTaskCompleted: '[data-testid="todo-item"]:first-child.completed',
+        firstTaskCheckbox: '[data-testid="todo-item"]:first-child [data-testid="todo-item-toggle"]',
+        firstTaskDelete: '[data-testid="todo-item"]:first-child [data-testid="todo-item-button"]',
         header: 'h1',
-        lastTaskName: 'ul.todo-list > li:last-child label',
+        lastTaskName: '[data-testid="todo-item"]:last-child [data-testid="todo-item-label"]',
         selected: '.selected',
-        tasks: 'ul.todo-list > li',
-        tasksActive: 'ul.todo-list > li:not(.completed)',
-        tasksCompleted: 'ul.todo-list > li.completed',
+        tasks: '[data-testid="todo-item"]',
+        tasksActive: '[data-testid="todo-item"]:not(.completed)',
+        tasksCompleted: '[data-testid="todo-item"].completed',
         tasksCount: 'span.todo-count',
-        toDoInput: '#todo-input'
+        toDoInput: '[data-testid="text-input"]'
     },
 
     addTask: (name = TASK_NAME) => {
@@ -72,6 +72,5 @@ export const mainPage = {
         cy.get(mainPage.selectors.firstTaskDelete).click({force: true})
 
         return cy.get(mainPage.selectors.tasks).should('not.exist')
-    },
-
+    }
 }
